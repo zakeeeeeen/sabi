@@ -352,10 +352,14 @@
                                 </div>
 
                                 <div class="w-full max-w-lg aspect-video rounded-2xl overflow-hidden bg-slate-900 border-2 border-slate-300 shadow-md flex items-center justify-center relative mx-auto">
-                                    <video id="investasiVideo" controls preload="metadata" class="w-full h-full object-cover">
-                                        <source src="{{ asset('assets/pengembangan bisnis.mp4') }}" type="video/mp4">
-                                        <source src="{{ asset('assets/pengembangan%20bisnis.mp4') }}" type="video/mp4">
-                                    </video>
+                                    <iframe id="investasiVideo" 
+                                        class="w-full h-full rounded-2xl" 
+                                        src="https://www.youtube-nocookie.com/embed/QUPX1R8rVEs?rel=0&modestbranding=1&enablejsapi=1" 
+                                        title="Video Pembelajaran Pengembangan Bisnis" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        allowfullscreen>
+                                    </iframe>
                                 </div>
 
                                 <p class="text-xs sm:text-[13px] md:text-sm text-[#785135] font-medium leading-snug max-w-xl mx-auto">
@@ -495,7 +499,11 @@
                     // Pause video when leaving Step 4
                     const vid = document.getElementById('investasiVideo');
                     if (vid && window.currentStep !== 4) {
-                        vid.pause();
+                        if (typeof vid.pause === 'function') {
+                            vid.pause();
+                        } else if (vid.contentWindow) {
+                            vid.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                        }
                     }
 
                     // Update Character Image & Flip

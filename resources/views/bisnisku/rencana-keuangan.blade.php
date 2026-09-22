@@ -239,10 +239,14 @@
                             <!-- STEP 2: Video Pembelajaran (Karakter: c_menyapa) -->
                             <div id="step2" class="step-panel flex-col items-center space-y-3 py-1 px-1 sm:px-3 text-center">
                                 <div class="w-full max-w-xl aspect-video rounded-2xl overflow-hidden bg-slate-900 border-2 border-slate-300 shadow-md flex items-center justify-center relative mx-auto">
-                                    <video id="learningVideo" controls preload="metadata" class="w-full h-full object-cover">
-                                        <source src="{{ asset('assets/halaman2.MP4') }}" type="video/mp4">
-                                        <source src="{{ asset('assets/halaman2.mp4') }}" type="video/mp4">
-                                    </video>
+                                    <iframe id="learningVideo" 
+                                        class="w-full h-full rounded-2xl" 
+                                        src="https://www.youtube-nocookie.com/embed/uvLOiqN2Geo?rel=0&modestbranding=1&enablejsapi=1" 
+                                        title="Video Pembelajaran Rencana Keuangan" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        allowfullscreen>
+                                    </iframe>
                                 </div>
                                 <p class="text-xs sm:text-sm md:text-base text-[#785135] font-medium leading-relaxed max-w-xl mx-auto">
                                     Sebagai seorang pengusaha kamu harus menggunakan uang dengan bijak. Belanjakan sesuai kebutuhan agar usahamu bisa lancar dan mendapatkan untung.
@@ -518,7 +522,11 @@
                     // Pause video if not on step 2
                     const vid = document.getElementById('learningVideo');
                     if (vid && window.currentStep !== 2) {
-                        vid.pause();
+                        if (typeof vid.pause === 'function') {
+                            vid.pause();
+                        } else if (vid.contentWindow) {
+                            vid.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                        }
                     }
 
                     // Update Character Image & Flip
