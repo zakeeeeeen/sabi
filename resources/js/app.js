@@ -104,41 +104,6 @@ function initAppLoader() {
         alreadyBooted = false;
     }
 
-    // List of all essential WebP assets and background audio to preload
-    const assetsToPreload = [
-        '/assets/pantai.webp',
-        '/assets/sabi.webp',
-        '/assets/c_kerang.webp',
-        '/assets/c_menyapa.webp',
-        '/assets/c_ide.webp',
-        '/assets/c_berpikir.webp',
-        '/assets/c_jempol.webp',
-        '/assets/c_aksesoris.webp',
-        '/assets/pohon.webp',
-        '/assets/kapal.webp',
-        '/assets/mulai.webp',
-        '/assets/menubisnisku.webp',
-        '/assets/menupanduan.webp',
-        '/assets/menutentangmedia.webp',
-        '/assets/idebisnisku.webp',
-        '/assets/rencanakeuangan.webp',
-        '/assets/pengembanganbisnis.webp',
-        '/assets/mulaibisnisku_button.webp',
-        '/assets/panduan_button.webp',
-        '/assets/tentang_button.webp',
-        '/assets/left_button.webp',
-        '/assets/right_button.webp',
-        '/assets/exit_button.webp',
-        '/assets/IDE.webp',
-        '/assets/RENCANA.webp',
-        '/assets/PENGEMBANGAN.webp',
-        '/assets/TUJUAN.webp',
-        '/assets/CAPAIAN.webp',
-        '/assets/pengembang1.webp',
-        '/assets/pengembang2.webp',
-        '/assets/pengembang3.webp'
-    ];
-
     if (alreadyBooted) {
         if (root) root.style.visibility = 'visible';
         preloader.style.display = 'none';
@@ -146,8 +111,52 @@ function initAppLoader() {
         return;
     }
 
+    // List of all essential WebP assets and background audio to preload
+    const assetsToPreload = Array.isArray(window.__SABI_ALL_ASSETS) && window.__SABI_ALL_ASSETS.length > 0
+        ? window.__SABI_ALL_ASSETS
+        : [
+            '/assets/pantai.webp',
+            '/assets/sabi.webp',
+            '/assets/c_kerang.webp',
+            '/assets/c_menyapa.webp',
+            '/assets/c_ide.webp',
+            '/assets/c_berpikir.webp',
+            '/assets/c_jempol.webp',
+            '/assets/c_aksesoris.webp',
+            '/assets/pohon.webp',
+            '/assets/kapal.webp',
+            '/assets/mulai.webp',
+            '/assets/menubisnisku.webp',
+            '/assets/menupanduan.webp',
+            '/assets/menutentangmedia.webp',
+            '/assets/idebisnisku.webp',
+            '/assets/rencanakeuangan.webp',
+            '/assets/pengembanganbisnis.webp',
+            '/assets/mulaibisnisku_button.webp',
+            '/assets/panduan_button.webp',
+            '/assets/tentang_button.webp',
+            '/assets/pengaturan_button.webp',
+            '/assets/home_button.webp',
+            '/assets/left_button.webp',
+            '/assets/right_button.webp',
+            '/assets/exit_button.webp',
+            '/assets/IDE.webp',
+            '/assets/RENCANA.webp',
+            '/assets/PENGEMBANGAN.webp',
+            '/assets/TUJUAN.webp',
+            '/assets/CAPAIAN.webp',
+            '/assets/pengembang1.webp',
+            '/assets/pengembang2.webp',
+            '/assets/pengembang3.webp'
+        ];
+
+    const routesToPrefetch = Array.isArray(window.__SABI_PREFETCH_ROUTES) ? window.__SABI_PREFETCH_ROUTES : [];
+
+    window.__SABI_IMG_CACHE = window.__SABI_IMG_CACHE || [];
+    window.__SABI_PAGE_CACHE = window.__SABI_PAGE_CACHE || new Map();
+
+    const totalCount = assetsToPreload.length + routesToPrefetch.length + 1; // +1 for fonts
     let loadedCount = 0;
-    const totalCount = assetsToPreload.length + 1; // +1 for fonts
 
     const updateProgress = () => {
         loadedCount++;
@@ -163,16 +172,39 @@ function initAppLoader() {
     const loadSingleImage = (url) => {
         return new Promise((resolve) => {
             const img = new Image();
+            img.crossOrigin = 'anonymous';
             img.onload = () => {
-                updateProgress();
-                resolve(true);
+                if (typeof img.decode === 'function') {
+                    img.decode().catch(() => {}).then(() => {
+                        updateProgress();
+                        resolve(true);
+                    });
+                } else {
+                    updateProgress();
+                    resolve(true);
+                }
             };
             img.onerror = () => {
                 updateProgress();
                 resolve(false);
             };
             img.src = url;
+            window.__SABI_IMG_CACHE.push(img);
         });
+    };
+
+    const prefetchSingleRoute = (url) => {
+        return fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+            .then((res) => res.text())
+            .then((html) => {
+                window.__SABI_PAGE_CACHE.set(url, html);
+                updateProgress();
+                return true;
+            })
+            .catch(() => {
+                updateProgress();
+                return false;
+            });
     };
 
     const loadFonts = () => {
@@ -188,10 +220,11 @@ function initAppLoader() {
     };
 
     const imagePromises = assetsToPreload.map(loadSingleImage);
-    const allLoaders = Promise.all([...imagePromises, loadFonts()]);
+    const routePromises = routesToPrefetch.map(prefetchSingleRoute);
+    const allLoaders = Promise.all([...imagePromises, ...routePromises, loadFonts()]);
 
-    // Safety timeout: max wait 1.5 seconds so user is never stuck
-    const timeoutPromise = new Promise((resolve) => setTimeout(resolve, 1500));
+    // Safety timeout: max wait 2.5 seconds
+    const timeoutPromise = new Promise((resolve) => setTimeout(resolve, 2500));
 
     Promise.race([allLoaders, timeoutPromise]).then(() => {
         if (typeof window.dismissAppPreloader === 'function') {
@@ -1419,21 +1452,23 @@ function initAllPageFeatures() {
 class SabiSpaRouter {
     constructor() {
         this.isNavigating = false;
-        this.init();
+        this.pageCache = window.__SABI_PAGE_CACHE = window.__SABI_PAGE_CACHE || new Map();
+        this.initEventListeners();
     }
 
-    init() {
+    initEventListeners() {
         // Intercept all internal navigation link clicks
         document.addEventListener('click', (e) => {
             const link = e.target instanceof Element ? e.target.closest('a') : null;
-            if (!link || !link.href) return;
+            if (!link) return;
 
-            // Ignore external links, downloads, new tabs, admin, or logout
-            if (link.target === '_blank' || link.hasAttribute('download')) return;
-            if (link.getAttribute('href')?.startsWith('#') || link.getAttribute('href')?.startsWith('javascript:')) return;
+            const href = link.getAttribute('href');
+            if (!href || href.startsWith('#') || href.startsWith('javascript:') || link.hasAttribute('data-no-spa') || link.target === '_blank') {
+                return;
+            }
 
             try {
-                const targetUrl = new URL(link.href, window.location.origin);
+                const targetUrl = new URL(href, window.location.origin);
                 if (targetUrl.origin !== window.location.origin) return;
                 if (targetUrl.pathname.startsWith('/admin') || targetUrl.pathname.includes('/logout')) return;
 
@@ -1442,10 +1477,31 @@ class SabiSpaRouter {
             } catch (err) {}
         });
 
-        // Intercept form submissions (e.g. Login / Masukkan Nama & Step submissions)
+        // Hover prefetch for instantaneous swaps
+        document.addEventListener('pointerover', (e) => {
+            const link = e.target instanceof Element ? e.target.closest('a') : null;
+            if (!link) return;
+
+            const href = link.getAttribute('href');
+            if (!href || href.startsWith('#') || href.startsWith('javascript:') || link.hasAttribute('data-no-spa') || link.target === '_blank') {
+                return;
+            }
+
+            try {
+                const targetUrl = new URL(href, window.location.origin);
+                if (targetUrl.origin === window.location.origin && !this.pageCache.has(targetUrl.href)) {
+                    fetch(targetUrl.href, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+                        .then((res) => res.text())
+                        .then((html) => this.pageCache.set(targetUrl.href, html))
+                        .catch(() => {});
+                }
+            } catch (err) {}
+        });
+
+        // Intercept Form Submissions
         document.addEventListener('submit', (e) => {
-            const form = e.target instanceof Element ? e.target.closest('form') : null;
-            if (!form || !form.action) return;
+            const form = e.target instanceof HTMLFormElement ? e.target : null;
+            if (!form) return;
 
             try {
                 const targetUrl = new URL(form.action, window.location.origin);
@@ -1499,6 +1555,9 @@ class SabiSpaRouter {
             const finalUrl = response.url || url;
             const htmlText = await response.text();
 
+            this.pageCache.set(url, htmlText);
+            this.pageCache.set(finalUrl, htmlText);
+
             this.swapPageContent(htmlText, finalUrl, true);
         } catch (err) {
             window.location.href = url;
@@ -1512,11 +1571,30 @@ class SabiSpaRouter {
         this.isNavigating = true;
 
         try {
+            // Check memory cache first for instant 0ms swap
+            if (this.pageCache.has(url)) {
+                const cachedHtml = this.pageCache.get(url);
+                this.swapPageContent(cachedHtml, url, pushState);
+                this.isNavigating = false;
+
+                // Re-fetch in background to update cache
+                fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+                    .then((res) => res.text())
+                    .then((freshHtml) => {
+                        this.pageCache.set(url, freshHtml);
+                    })
+                    .catch(() => {});
+                return;
+            }
+
             const response = await fetch(url, {
                 headers: { 'X-Requested-With': 'XMLHttpRequest' }
             });
             const finalUrl = response.url || url;
             const htmlText = await response.text();
+
+            this.pageCache.set(url, htmlText);
+            this.pageCache.set(finalUrl, htmlText);
 
             this.swapPageContent(htmlText, finalUrl, pushState);
         } catch (err) {

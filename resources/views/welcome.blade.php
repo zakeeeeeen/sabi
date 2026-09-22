@@ -14,6 +14,50 @@
 
         <script>
             window.__SABI_BGM_URL = "{{ asset('assets/underthesea.mp3') }}";
+            window.__SABI_ALL_ASSETS = [
+                "{{ asset('assets/pantai.webp') }}",
+                "{{ asset('assets/sabi.webp') }}",
+                "{{ asset('assets/c_kerang.webp') }}",
+                "{{ asset('assets/c_menyapa.webp') }}",
+                "{{ asset('assets/c_ide.webp') }}",
+                "{{ asset('assets/c_berpikir.webp') }}",
+                "{{ asset('assets/c_jempol.webp') }}",
+                "{{ asset('assets/c_aksesoris.webp') }}",
+                "{{ asset('assets/pohon.webp') }}",
+                "{{ asset('assets/kapal.webp') }}",
+                "{{ asset('assets/mulai.webp') }}",
+                "{{ asset('assets/menubisnisku.webp') }}",
+                "{{ asset('assets/menupanduan.webp') }}",
+                "{{ asset('assets/menutentangmedia.webp') }}",
+                "{{ asset('assets/idebisnisku.webp') }}",
+                "{{ asset('assets/rencanakeuangan.webp') }}",
+                "{{ asset('assets/pengembanganbisnis.webp') }}",
+                "{{ asset('assets/mulaibisnisku_button.webp') }}",
+                "{{ asset('assets/panduan_button.webp') }}",
+                "{{ asset('assets/tentang_button.webp') }}",
+                "{{ asset('assets/pengaturan_button.webp') }}",
+                "{{ asset('assets/home_button.webp') }}",
+                "{{ asset('assets/left_button.webp') }}",
+                "{{ asset('assets/right_button.webp') }}",
+                "{{ asset('assets/exit_button.webp') }}",
+                "{{ asset('assets/IDE.webp') }}",
+                "{{ asset('assets/RENCANA.webp') }}",
+                "{{ asset('assets/PENGEMBANGAN.webp') }}",
+                "{{ asset('assets/TUJUAN.webp') }}",
+                "{{ asset('assets/CAPAIAN.webp') }}",
+                "{{ asset('assets/pengembang1.webp') }}",
+                "{{ asset('assets/pengembang2.webp') }}",
+                "{{ asset('assets/pengembang3.webp') }}"
+            ];
+            window.__SABI_PREFETCH_ROUTES = [
+                "{{ route('menu') }}",
+                "{{ route('petunjuk') }}",
+                "{{ route('page', ['slug' => 'tentang-media']) }}",
+                "{{ route('bisnisku') }}",
+                "{{ route('bisnisku.ide-bisnis') }}",
+                "{{ route('bisnisku.rencana-keuangan') }}",
+                "{{ route('bisnisku.pengembangan-bisnis') }}"
+            ];
         </script>
 
         <!-- Styles / Scripts -->
@@ -21,7 +65,7 @@
         @livewireStyles
     </head>
     <body class="antialiased font-['Jua']">
-        <!-- GLOBAL PRELOADER LAYAR PENUH (PERSIS SEPERTI MOCKUP) -->
+        <!-- GLOBAL PRELOADER LAYAR PENUH -->
         <div id="globalAppPreloader" class="fixed inset-0 z-[9999] flex flex-col items-center justify-between overflow-hidden select-none bg-cover bg-bottom"
              style="background-image: url('{{ asset('assets/pantai.webp') }}');">
             
@@ -78,17 +122,8 @@
                 var bar = document.getElementById('loaderProgressBar');
                 var txt = document.getElementById('loaderPercent');
                 var root = document.querySelector('[data-app-root]');
-                
-                var percent = 0;
-                var loaderInterval = setInterval(function() {
-                    percent += (percent < 70 ? 8 : (percent < 90 ? 4 : 2));
-                    if (percent > 95) percent = 95;
-                    if (bar) bar.style.width = percent + '%';
-                    if (txt) txt.textContent = percent + '%';
-                }, 70);
 
                 window.dismissAppPreloader = function() {
-                    clearInterval(loaderInterval);
                     if (bar) bar.style.width = '100%';
                     if (txt) txt.textContent = '100%';
                     if (root) root.style.visibility = 'visible';
@@ -103,12 +138,12 @@
                     }
                 };
 
-                // Fallback otomatis: maksimal 2 detik preloader pasti selesai & terbuka
+                // Fallback otomatis jika terjadi hambatan jaringan yang ekstrim
                 setTimeout(function() {
                     if (window.dismissAppPreloader) {
                         window.dismissAppPreloader();
                     }
-                }, 1800);
+                }, 3500);
             })();
         </script>
         
