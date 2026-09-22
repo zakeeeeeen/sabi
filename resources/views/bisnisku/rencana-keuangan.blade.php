@@ -104,7 +104,7 @@
             }
 
             .animate-tree-sway {
-                transform-origin: top center;
+                transform-origin: bottom center;
                 animation: treeSwaySmooth 6s ease-in-out infinite;
                 will-change: transform;
                 contain: layout style paint;
