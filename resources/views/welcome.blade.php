@@ -60,14 +60,52 @@
                 <livewire:beranda />
             </div>
         </div>
+
         <script>
-            try {
-                sessionStorage.removeItem('app.booted');
-                sessionStorage.removeItem('app.fullscreen.preferred');
-                sessionStorage.removeItem('app.fullscreen.prompted');
-                sessionStorage.removeItem('app.fullscreen.next');
-            } catch {
-            }
+            (function() {
+                try {
+                    sessionStorage.removeItem('app.booted');
+                    sessionStorage.removeItem('app.fullscreen.preferred');
+                    sessionStorage.removeItem('app.fullscreen.prompted');
+                    sessionStorage.removeItem('app.fullscreen.next');
+                } catch (e) {}
+
+                var preloader = document.getElementById('globalAppPreloader');
+                var bar = document.getElementById('loaderProgressBar');
+                var txt = document.getElementById('loaderPercent');
+                var root = document.querySelector('[data-app-root]');
+                
+                var percent = 0;
+                var loaderInterval = setInterval(function() {
+                    percent += (percent < 70 ? 8 : (percent < 90 ? 4 : 2));
+                    if (percent > 95) percent = 95;
+                    if (bar) bar.style.width = percent + '%';
+                    if (txt) txt.textContent = percent + '%';
+                }, 70);
+
+                window.dismissAppPreloader = function() {
+                    clearInterval(loaderInterval);
+                    if (bar) bar.style.width = '100%';
+                    if (txt) txt.textContent = '100%';
+                    if (root) root.style.visibility = 'visible';
+                    if (preloader) {
+                        preloader.style.opacity = '0';
+                        preloader.style.transition = 'opacity 350ms ease-out, transform 350ms ease-out';
+                        preloader.style.transform = 'scale(1.02)';
+                        preloader.style.pointerEvents = 'none';
+                        setTimeout(function() {
+                            preloader.style.display = 'none';
+                        }, 400);
+                    }
+                };
+
+                // Fallback otomatis: maksimal 2 detik preloader pasti selesai & terbuka
+                setTimeout(function() {
+                    if (window.dismissAppPreloader) {
+                        window.dismissAppPreloader();
+                    }
+                }, 1800);
+            })();
         </script>
         
         @livewireScripts

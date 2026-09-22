@@ -190,29 +190,33 @@ function initAppLoader() {
     const imagePromises = assetsToPreload.map(loadSingleImage);
     const allLoaders = Promise.all([...imagePromises, loadFonts()]);
 
-    // Safety timeout: max wait 5 seconds so user is never stuck
-    const timeoutPromise = new Promise((resolve) => setTimeout(resolve, 5000));
+    // Safety timeout: max wait 1.5 seconds so user is never stuck
+    const timeoutPromise = new Promise((resolve) => setTimeout(resolve, 1500));
 
     Promise.race([allLoaders, timeoutPromise]).then(() => {
-        if (progressBar) progressBar.style.width = '100%';
-        if (percentText) percentText.textContent = '100%';
-
-        setTimeout(() => {
-            try {
-                sessionStorage.setItem('app.booted', '1');
-            } catch {}
-
-            if (root) root.style.visibility = 'visible';
-            preloader.style.opacity = '0';
-            preloader.style.transition = 'opacity 400ms ease-out, transform 400ms ease-out';
-            preloader.style.transform = 'scale(1.02)';
-            preloader.style.pointerEvents = 'none';
-            preloader.setAttribute('aria-hidden', 'true');
+        if (typeof window.dismissAppPreloader === 'function') {
+            window.dismissAppPreloader();
+        } else {
+            if (progressBar) progressBar.style.width = '100%';
+            if (percentText) percentText.textContent = '100%';
 
             setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 450);
-        }, 300);
+                try {
+                    sessionStorage.setItem('app.booted', '1');
+                } catch {}
+
+                if (root) root.style.visibility = 'visible';
+                preloader.style.opacity = '0';
+                preloader.style.transition = 'opacity 350ms ease-out, transform 350ms ease-out';
+                preloader.style.transform = 'scale(1.02)';
+                preloader.style.pointerEvents = 'none';
+                preloader.setAttribute('aria-hidden', 'true');
+
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 400);
+            }, 200);
+        }
     });
 }
 
@@ -1602,13 +1606,29 @@ class SabiSpaRouter {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initialize Background Music Manager (starts persistent audio)
-    window.sabiBgm = new SabiBgmManager();
+function bootstrapSabiApp() {
+    try {
+        window.sabiBgm = new SabiBgmManager();
+    } catch (e) {
+        console.warn('BGM init error:', e);
+    }
 
-    // 2. Initialize Seamless SPA Navigator (keeps audio playing across pages)
-    window.sabiRouter = new SabiSpaRouter();
+    try {
+        window.sabiRouter = new SabiSpaRouter();
+    } catch (e) {
+        console.warn('Router init error:', e);
+    }
 
-    // 3. Initialize all page UI features
-    initAllPageFeatures();
-});
+    try {
+        initAllPageFeatures();
+    } catch (e) {
+        console.warn('Features init error:', e);
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootstrapSabiApp);
+} else {
+    bootstrapSabiApp();
+}
+
