@@ -103,6 +103,9 @@
                     </a>
                 </div>
 
+                <!-- Tombol & Modal Pengaturan Suara di Pojok Kanan Atas -->
+                <x-sound-settings />
+
                 <!-- Main Content: 3 Custom Image Buttons -->
                 <div class="flex-1 w-full flex items-center justify-center py-2 overflow-visible">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-14 items-center justify-items-center w-full max-w-6xl mx-auto px-4">

@@ -207,6 +207,9 @@
                          class="h-20 sm:h-24 md:h-32 lg:h-36 xl:h-40 w-auto drop-shadow-xl animate-banner-float select-none pointer-events-none">
                 </div>
 
+                <!-- Tombol & Modal Pengaturan Suara di Pojok Kanan Atas -->
+                <x-sound-settings />
+
                 <!-- ============================================================
                      4. KARAKTER DI SISI KIRI BAWAH (Step 1 = c_ide.png)
                      ============================================================ -->
