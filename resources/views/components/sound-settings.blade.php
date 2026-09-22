@@ -105,3 +105,45 @@
 
     </div>
 </div>
+
+<script>
+    window.__SABI_BGM_URL = "{{ asset('assets/underthesea.mp3') }}";
+
+    window.openSettingsModal = function() {
+        var modal = document.getElementById('settingsModal');
+        var box = document.getElementById('settingsBox');
+        if (modal) {
+            modal.classList.remove('opacity-0', 'pointer-events-none', 'hidden');
+            modal.classList.add('opacity-100', 'pointer-events-auto', 'flex');
+            if (box) {
+                box.classList.remove('scale-90');
+                box.classList.add('scale-100');
+            }
+        }
+        if (window.sabiBgm) {
+            window.sabiBgm.updateModalUI();
+        } else {
+            // Standalone sync if global instance not ready
+            try {
+                var slider = document.getElementById('bgmVolumeSlider');
+                var valText = document.getElementById('bgmVolumeVal');
+                var savedVol = localStorage.getItem('sabi_bgm_volume') || '60';
+                if (slider) slider.value = savedVol;
+                if (valText) valText.textContent = savedVol + '%';
+            } catch(e) {}
+        }
+    };
+
+    window.closeSettingsModal = function() {
+        var modal = document.getElementById('settingsModal');
+        var box = document.getElementById('settingsBox');
+        if (modal) {
+            modal.classList.remove('opacity-100', 'pointer-events-auto');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            if (box) {
+                box.classList.remove('scale-100');
+                box.classList.add('scale-90');
+            }
+        }
+    };
+</script>

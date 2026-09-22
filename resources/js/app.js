@@ -1163,7 +1163,6 @@ class SabiBgmManager {
         let existingAudio = document.getElementById('sabiGlobalBgm');
         if (existingAudio) {
             this.audio = existingAudio;
-            // If already playing smoothly in SPA context, don't re-init audio src
             if (!this.audio.paused && this.audio.currentTime > 0.5) {
                 this.timeRestored = true;
                 this.applyAudioSettings();
@@ -1177,14 +1176,19 @@ class SabiBgmManager {
             this.audio.id = 'sabiGlobalBgm';
             this.audio.loop = true;
             this.audio.preload = 'auto';
-            document.body.appendChild(this.audio);
+            if (document.body) {
+                document.body.appendChild(this.audio);
+            } else if (document.documentElement) {
+                document.documentElement.appendChild(this.audio);
+            }
         }
 
         const targetVolume = this.isMuted ? 0 : this.volume;
 
-        // 4. Set clean audio source
+        // 4. Set clean audio source dynamically
+        const finalSrc = window.__SABI_BGM_URL || this.audioSrc || '/assets/underthesea.mp3';
         if (!this.audio.src || !this.audio.src.includes('underthesea')) {
-            this.audio.src = this.audioSrc;
+            this.audio.src = finalSrc;
         }
 
         // Apply initial volume/mute
@@ -1215,15 +1219,11 @@ class SabiBgmManager {
         const unlockAudio = () => {
             applySeek();
             this.tryPlay();
-            document.removeEventListener('pointerdown', unlockAudio);
-            document.removeEventListener('click', unlockAudio);
-            document.removeEventListener('touchstart', unlockAudio);
-            document.removeEventListener('keydown', unlockAudio);
         };
-        document.addEventListener('pointerdown', unlockAudio, { once: true });
-        document.addEventListener('click', unlockAudio, { once: true });
-        document.addEventListener('touchstart', unlockAudio, { once: true });
-        document.addEventListener('keydown', unlockAudio, { once: true });
+        window.addEventListener('pointerdown', unlockAudio, { passive: true });
+        window.addEventListener('click', unlockAudio, { passive: true });
+        window.addEventListener('touchstart', unlockAudio, { passive: true });
+        window.addEventListener('keydown', unlockAudio, { passive: true });
 
         // 7. Tracking & Modal UI
         this.startTracking();
