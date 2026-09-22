@@ -149,11 +149,17 @@
                 </div>
 
                 <!-- ============================================================
-                     3. TOP BAR: STEP BADGE & JUDUL
+                     3. TOP BAR: TOMBOL HOME, STEP BADGE & JUDUL
                      ============================================================ -->
-                <!-- Top Left: Step Indicator Badge -->
-                <div class="absolute top-3 left-3 sm:top-4 sm:left-5 md:top-5 md:left-6 z-30 flex items-center gap-3 pointer-events-none">
-                    <div class="flex items-center gap-1.5 sm:gap-2 rounded-full bg-white/95 border-2 sm:border-3 border-[#FFB800] px-3 sm:px-4 py-1 sm:py-1.5 shadow-[0_4px_10px_rgba(0,0,0,0.15)] text-[#785135] text-xs sm:text-sm md:text-base font-bold font-['Plus_Jakarta_Sans']">
+                <!-- Top Left: Tombol Home & Step Indicator Badge -->
+                <div class="absolute top-3 left-3 sm:top-4 sm:left-5 md:top-5 md:left-6 z-30 flex items-center gap-2 sm:gap-3">
+                    <!-- Tombol Home (Kembali ke Menu Utama) -->
+                    <a href="{{ route('menu') }}" data-sfx="hover" class="transition-transform hover:scale-105 active:scale-95 cursor-pointer block" title="Kembali ke Menu Utama">
+                        <img src="{{ asset('assets/home_button.webp') }}" alt="Menu Utama" class="w-10 sm:w-12 md:w-14 lg:w-16 h-auto drop-shadow-md select-none pointer-events-none">
+                    </a>
+
+                    <!-- Step Indicator Badge -->
+                    <div class="flex items-center gap-1.5 sm:gap-2 rounded-full bg-white/95 border-2 sm:border-3 border-[#FFB800] px-3 sm:px-4 py-1 sm:py-1.5 shadow-[0_4px_10px_rgba(0,0,0,0.15)] text-[#785135] text-xs sm:text-sm md:text-base font-bold font-['Plus_Jakarta_Sans'] pointer-events-none">
                         <span>Halaman</span>
                         <span id="currentStepNum" class="text-[#00A3FF] font-black text-sm sm:text-base md:text-lg">1</span>
                         <span>/ 5</span>
