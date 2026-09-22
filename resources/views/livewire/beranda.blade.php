@@ -87,74 +87,66 @@
 
     <!-- ============================================================
          KAPAL LAUT (BERLAYAR DARI KANAN KE KIRI SECARA TERUS MENERUS)
-         PANDUAN TATA LETAK & PENGATURAN KAPAL:
-         - Posisi Vertikal Garis Laut: style="top: 47%;" (bisa diatur misal 45% atau 49%)
-         - Kecepatan: Ubah '26s' pada CSS .animate-ship-sail di atas
-         - Ukuran Kapal: class="w-[140px] sm:w-[190px] md:w-[250px] lg:w-[290px]"
          ============================================================ -->
-    <div class="animate-ship-sail z-5 pointer-events-none" style="top: 37%;">
+    <div class="animate-ship-sail z-5 pointer-events-none" style="top: 34%;">
         <div class="animate-ship-bob">
             <img src="{{ asset('assets/kapal.webp') }}" 
                  alt="Kapal Laut" 
-                 class="w-[140px] sm:w-[190px] md:w-[250px] lg:w-[290px] h-auto drop-shadow-md select-none">
+                 class="w-[95px] sm:w-[140px] md:w-[200px] lg:w-[260px] h-auto drop-shadow-md select-none pointer-events-none">
         </div>
     </div>
 
     <!-- ============================================================
-         1. DEKORASI POHON KIRI (DIGESER TEMBUS KELUAR KE KIRI ATAS)
+         1. DEKORASI POHON KIRI
          ============================================================ -->
-    <div class="absolute z-10 pointer-events-none"
-         style="top: -40px; left: -180px; transform: scaleX(1);">
+    <div class="absolute z-10 pointer-events-none -top-4 sm:-top-8 md:-top-10 -left-24 sm:-left-36 md:-left-48">
         <div class="animate-tree-sway">
             <img src="{{ asset('assets/pohon.webp') }}" 
                  alt="Pohon Kiri" 
-                 class="h-[80vh] md:h-[90vh] w-auto max-w-none drop-shadow-md select-none">
+                 class="h-[58vh] sm:h-[75vh] md:h-[88vh] w-auto drop-shadow-md select-none opacity-85 sm:opacity-100 pointer-events-none">
         </div>
     </div>
 
     <!-- ============================================================
-         2. DEKORASI POHON KANAN (DIGESER TEMBUS KELUAR KE KANAN ATAS - MIRRORED)
+         2. DEKORASI POHON KANAN (MIRRORED)
          ============================================================ -->
-    <div class="absolute z-10 pointer-events-none"
-         style="top: -40px; right: -180px; transform: scaleX(-1);">
+    <div class="absolute z-10 pointer-events-none -top-4 sm:-top-8 md:-top-10 -right-24 sm:-right-36 md:-right-48 scale-x-[-1]">
         <div class="animate-tree-sway" style="animation-delay: -3s;">
             <img src="{{ asset('assets/pohon.webp') }}" 
                  alt="Pohon Kanan (Mirrored)" 
-                 class="h-[80vh] md:h-[90vh] w-auto max-w-none drop-shadow-md select-none">
+                 class="h-[58vh] sm:h-[75vh] md:h-[88vh] w-auto drop-shadow-md select-none opacity-85 sm:opacity-100 pointer-events-none">
         </div>
     </div>
 
     <!-- ============================================================
-         3. KARAKTER DI SISI KIRI BAWAH (c_menyapa):
-         - Bagian ember & badan bawah tembus tenggelam ke bawah layar
+         3. KARAKTER DI SISI KIRI BAWAH (c_menyapa)
          ============================================================ -->
-    <div class="absolute z-20 pointer-events-none animate-char-entrance-left"
-         style="bottom: -85px; left: -15px;">
+    <div class="absolute z-20 pointer-events-none animate-char-entrance-left -bottom-8 sm:-bottom-14 md:-bottom-20 -left-2 sm:left-2 md:left-6">
         <div class="animate-char-idle">
             <img src="{{ asset('assets/c_menyapa.webp') }}" 
                  alt="Karakter Menyapa" 
-                 class="h-[55vh] md:h-[65vh] w-auto drop-shadow-[0_12px_15px_rgba(0,0,0,0.25)] select-none">
+                 class="h-[46vh] sm:h-[58vh] md:h-[68vh] w-auto drop-shadow-[0_12px_15px_rgba(0,0,0,0.25)] select-none pointer-events-none">
         </div>
     </div>
 
     <!-- ============================================================
          4. KONTEN TENGAH: LOGO BESAR & TOMBOL MULAI
          ============================================================ -->
-    <div class="z-30 flex flex-col items-center text-center gap-4 md:gap-6 max-w-2xl px-4">
+    <div class="z-30 flex flex-col items-center justify-center text-center gap-1.5 sm:gap-3 md:gap-4 max-w-2xl px-3 sm:px-4 my-auto">
         
         <!-- Logo SABI -->
         <img src="{{ asset('assets/sabi.webp') }}" 
              alt="SABI" 
-             class="w-[280px] sm:w-[380px] md:w-[500px] lg:w-[560px] h-auto drop-shadow-xl transition-transform hover:scale-105 duration-300 select-none">
+             class="w-[190px] sm:w-[280px] md:w-[420px] lg:w-[500px] max-h-[38vh] h-auto object-contain drop-shadow-xl transition-transform hover:scale-105 duration-300 select-none pointer-events-none">
 
         <!-- Tombol Mulai -->
         @auth
-            <a href="{{ route('menu') }}" data-sfx="hover" class="block transition-transform hover:scale-110 active:scale-95 mt-1">
-                <img src="{{ asset('assets/mulai.webp') }}" alt="Mulai" class="w-40 sm:w-48 md:w-56 h-auto drop-shadow-lg select-none">
+            <a href="{{ route('menu') }}" data-sfx="hover" class="block transition-transform hover:scale-105 active:scale-95 mt-0.5 sm:mt-1 cursor-pointer">
+                <img src="{{ asset('assets/mulai.webp') }}" alt="Mulai" class="w-28 sm:w-36 md:w-48 max-h-[16vh] h-auto object-contain drop-shadow-lg select-none pointer-events-none">
             </a>
         @else
-            <button type="button" onclick="openNameModal()" data-sfx="hover" class="block transition-transform hover:scale-110 active:scale-95 mt-1 cursor-pointer focus:outline-none">
-                <img src="{{ asset('assets/mulai.webp') }}" alt="Mulai" class="w-40 sm:w-48 md:w-56 h-auto drop-shadow-lg select-none">
+            <button type="button" onclick="openNameModal()" data-sfx="hover" class="block transition-transform hover:scale-105 active:scale-95 mt-0.5 sm:mt-1 cursor-pointer focus:outline-none border-none bg-transparent p-0">
+                <img src="{{ asset('assets/mulai.webp') }}" alt="Mulai" class="w-28 sm:w-36 md:w-48 max-h-[16vh] h-auto object-contain drop-shadow-lg select-none pointer-events-none">
             </button>
         @endauth
     </div>

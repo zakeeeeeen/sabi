@@ -151,32 +151,30 @@
                 <!-- ============================================================
                      1. KAPAL LAUT DI CAKRAWALA (SMOOTH ANIMATED)
                      ============================================================ -->
-                <div class="animate-ship-sail z-5 pointer-events-none" style="top: 37%;">
+                <div class="animate-ship-sail z-5 pointer-events-none" style="top: 34%;">
                     <div class="animate-ship-bob pointer-events-none">
                         <img src="{{ asset('assets/kapal.webp') }}" 
                              alt="Kapal Laut" 
-                             class="w-[140px] sm:w-[190px] md:w-[240px] lg:w-[270px] h-auto drop-shadow-md select-none pointer-events-none">
+                             class="w-[95px] sm:w-[140px] md:w-[200px] lg:w-[260px] h-auto drop-shadow-md select-none pointer-events-none">
                     </div>
                 </div>
 
                 <!-- ============================================================
                      2. DEKORASI POHON KIRI & KANAN (SMOOTH ANIMATED)
                      ============================================================ -->
-                <div class="absolute z-10 pointer-events-none"
-                     style="top: -40px; left: -180px; transform: scaleX(1);">
+                <div class="absolute z-10 pointer-events-none -top-4 sm:-top-8 md:-top-10 -left-24 sm:-left-36 md:-left-48">
                     <div class="animate-tree-sway pointer-events-none">
                         <img src="{{ asset('assets/pohon.webp') }}" 
                              alt="Pohon Kiri" 
-                             class="h-[80vh] md:h-[90vh] w-auto max-w-none drop-shadow-md select-none pointer-events-none">
+                             class="h-[58vh] sm:h-[75vh] md:h-[88vh] w-auto drop-shadow-md select-none opacity-85 sm:opacity-100 pointer-events-none">
                     </div>
                 </div>
 
-                <div class="absolute z-10 pointer-events-none"
-                     style="top: -40px; right: -180px; transform: scaleX(-1);">
+                <div class="absolute z-10 pointer-events-none -top-4 sm:-top-8 md:-top-10 -right-24 sm:-right-36 md:-right-48 scale-x-[-1]">
                     <div class="animate-tree-sway pointer-events-none" style="animation-delay: -3s;">
                         <img src="{{ asset('assets/pohon.webp') }}" 
                              alt="Pohon Kanan" 
-                             class="h-[80vh] md:h-[90vh] w-auto max-w-none drop-shadow-md select-none pointer-events-none">
+                             class="h-[58vh] sm:h-[75vh] md:h-[88vh] w-auto drop-shadow-md select-none opacity-85 sm:opacity-100 pointer-events-none">
                     </div>
                 </div>
 
