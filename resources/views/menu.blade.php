@@ -233,27 +233,27 @@
                 <!-- ============================================================
                      4. KARAKTER C_MENYAPA & CLOUD CHAT (DI SISI KIRI)
                      ============================================================ -->
-                <!-- Karakter c_menyapa (Mobile: semula, Desktop: setting pilihan Anda) -->
-                <div class="absolute z-20 pointer-events-none animate-char-entrance-left -bottom-[85px] -left-[15px] md:-bottom-[125px] md:left-[100px]">
+                <!-- Karakter c_menyapa (Berada rapi di kiri bawah) -->
+                <div class="absolute z-20 pointer-events-none animate-char-entrance-left -bottom-[70px] sm:-bottom-[95px] md:-bottom-[115px] lg:-bottom-[130px] -left-[10px] sm:left-0 md:left-2 lg:left-6">
                     <div class="animate-char-idle">
                         <img src="{{ asset('assets/c_menyapa.webp') }}" 
                              alt="Karakter Menyapa" 
-                             class="h-[50vh] md:h-[78vh] w-auto drop-shadow-[0_14px_18px_rgba(0,0,0,0.3)] select-none">
+                             class="h-[50vh] sm:h-[60vh] md:h-[72vh] lg:h-[78vh] max-h-[580px] w-auto drop-shadow-[0_14px_18px_rgba(0,0,0,0.3)] select-none">
                     </div>
                 </div>
 
-                <!-- Cloud Chat Bubble (Mobile: menyesuaikan HP, Desktop: setting pilihan Anda) -->
-                <div class="absolute z-30 left-[250px] sm:left-[220px] md:left-[290px] lg:left-[555px] top-[40%] -translate-y-1/2 max-w-[210px] sm:max-w-[260px] md:max-w-[340px] lg:max-w-[555px] pointer-events-auto animate-bubble-float select-none">
-                    <div class="relative" style="filter: drop-shadow(-8px 8px 0 #7FBFC9);">
+                <!-- Cloud Chat Bubble (Proporsional & Tidak Menabrak Tombol) -->
+                <div class="absolute z-30 left-[165px] sm:left-[210px] md:left-[260px] lg:left-[310px] xl:left-[360px] top-[40%] -translate-y-1/2 max-w-[190px] sm:max-w-[240px] md:max-w-[310px] lg:max-w-[370px] xl:max-w-[420px] pointer-events-auto animate-bubble-float select-none">
+                    <div class="relative" style="filter: drop-shadow(-6px 6px 0 #7FBFC9);">
                         <!-- White Speech Bubble Box -->
-                        <div class="bg-white rounded-[22px] sm:rounded-[28px] md:rounded-[32px] px-4 sm:px-5 md:px-6 py-3.5 sm:py-4 md:py-4.5 text-left">
-                            <p class="text-[#785135] text-xs sm:text-sm md:text-base lg:text-2xl font-['Jua'] leading-snug sm:leading-relaxed tracking-wide">
+                        <div class="bg-white rounded-[20px] sm:rounded-[24px] md:rounded-[28px] px-3.5 sm:px-4.5 md:px-5.5 py-2.5 sm:py-3.5 md:py-4 text-left shadow-sm">
+                            <p class="text-[#785135] text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-['Jua'] leading-snug sm:leading-relaxed tracking-wide">
                                 Halo {{ auth()->user()->name ?? 'Teman' }}! Selamat datang di SABI! Yuk, belajar jadi pengusaha hebat dengan cara yang asyik 
                             </p>
                         </div>
 
                         <!-- Ekor Cloud Chat di Pojok Kiri Bawah mengarah ke Karakter -->
-                        <div class="absolute -bottom-3.5 left-4 sm:left-6 w-7 h-5 overflow-visible pointer-events-none">
+                        <div class="absolute -bottom-3 left-4 sm:left-6 w-6 sm:w-7 h-4 sm:h-5 overflow-visible pointer-events-none">
                             <svg viewBox="0 0 28 20" class="w-full h-full fill-white overflow-visible">
                                 <path d="M0,0 L24,0 C16,8 6,15 -10,20 C-2,12 0,6 0,0 Z"/>
                             </svg>
@@ -264,7 +264,7 @@
                 <!-- ============================================================
                      5. TOMBOL MENU UTAMA (GAMBAR TOMBOL KUSTOM)
                      ============================================================ -->
-                <div class="absolute right-[4%] sm:right-[6%] md:right-[8%] lg:right-[10%] xl:right-[12%] top-[53%] -translate-y-1/2 z-30 flex flex-col items-center gap-2.5 sm:gap-3.5 md:gap-4 w-[220px] sm:w-[280px] md:w-[350px] lg:w-[430px] xl:w-[470px]">
+                <div class="absolute right-3 sm:right-5 md:right-7 lg:right-10 xl:right-14 top-[52%] -translate-y-1/2 z-30 flex flex-col items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-3.5 w-[190px] sm:w-[240px] md:w-[300px] lg:w-[370px] xl:w-[420px]">
                     
                     <!-- 1. Tombol MULAI BISNISKU -->
                     <a href="{{ route('bisnisku') }}" 
