@@ -47,7 +47,11 @@
                 "{{ asset('assets/CAPAIAN.webp') }}",
                 "{{ asset('assets/pengembang1.webp') }}",
                 "{{ asset('assets/pengembang2.webp') }}",
-                "{{ asset('assets/pengembang3.webp') }}"
+                "{{ asset('assets/pengembang3.webp') }}",
+                "{{ asset('assets/gelang.webp') }}",
+                "{{ asset('assets/kalung.webp') }}",
+                "{{ asset('assets/ganci.webp') }}",
+                "{{ asset('assets/hiasan.webp') }}"
             ];
             window.__SABI_PREFETCH_ROUTES = [
                 "{{ route('menu') }}",

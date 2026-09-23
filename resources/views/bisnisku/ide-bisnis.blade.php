@@ -236,13 +236,60 @@
                             </div>
 
                             <!-- STEP 2: Aktivitas Ekonomi Pesisir & Kerajinan Kulit Kerang (Karakter: c_ide) -->
-                            <div id="step2" class="step-panel flex-col space-y-4 py-2 px-1 sm:px-3 text-left text-[#785135]">
+                            <div id="step2" class="step-panel flex-col space-y-3 sm:space-y-4 py-1 sm:py-2 px-1 sm:px-3 text-left text-[#785135]">
                                 <p class="text-xs sm:text-sm md:text-base lg:text-lg font-medium leading-relaxed">
-                                    Saat berwisata ke pantai, kita bisa melihat berbagai jenis aktivitas ekonomi pesisir. Ada yang menjual ikan, memanen rumput laut, membuka olahan kuliner dan wisata bahari. Selain itu, banyak juga warga yang menjual cenderamata dari hasil laut untuk oleh-olen.
+                                    Saat berwisata ke pantai, kita bisa melihat berbagai jenis aktivitas ekonomi pesisir. Ada yang menjual ikan, memanen rumput laut, membuka olahan kuliner dan wisata bahari. Selain itu, banyak juga warga yang menjual cenderamata dari hasil laut untuk oleh-oleh.
                                 </p>
                                 <p class="text-xs sm:text-sm md:text-base lg:text-lg font-medium leading-relaxed">
                                     Salah satu oleh-oleh yang paling diminati wisatawan adalah kerajinan dari kulit kerang. Melihat peluang ini, masyarakat pesisir mendirikan industri kerajinan kulit kerang. Mereka mengolah kulit kerang menjadi berbagai benda pajangan yang indah untuk dijual. Melalui usaha kreatif ini, warga pesisir bisa mendapatkan penghasilan untuk memenuhi kebutuhan hidup mereka.
                                 </p>
+
+                                <!-- Contoh Produk Kerajinan Kulit Kerang -->
+                                <div class="pt-2">
+                                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 md:gap-4">
+                                        
+                                        <!-- 1. Gelang Kerang -->
+                                        <div class="bg-gradient-to-b from-[#FFFDF8] to-[#FFF4E0] border-2 border-[#D4A373]/70 rounded-2xl p-2 sm:p-2.5 flex flex-col items-center justify-between shadow-[0_4px_10px_rgba(0,0,0,0.08)] hover:scale-105 transition-transform duration-200">
+                                            <div class="w-full h-20 sm:h-24 md:h-28 rounded-xl bg-white flex items-center justify-center p-1.5 border border-amber-200/50 shadow-inner overflow-hidden">
+                                                <img src="{{ asset('assets/gelang.webp') }}" alt="Gelang Kerang" class="w-full h-full object-contain select-none pointer-events-none">
+                                            </div>
+                                            <span class="mt-2 text-xs sm:text-sm font-bold text-[#6D360B] font-['Jua'] tracking-wide text-center leading-tight">
+                                                Gelang Kerang
+                                            </span>
+                                        </div>
+
+                                        <!-- 2. Kalung Kerang -->
+                                        <div class="bg-gradient-to-b from-[#FFFDF8] to-[#FFF4E0] border-2 border-[#D4A373]/70 rounded-2xl p-2 sm:p-2.5 flex flex-col items-center justify-between shadow-[0_4px_10px_rgba(0,0,0,0.08)] hover:scale-105 transition-transform duration-200">
+                                            <div class="w-full h-20 sm:h-24 md:h-28 rounded-xl bg-white flex items-center justify-center p-1.5 border border-amber-200/50 shadow-inner overflow-hidden">
+                                                <img src="{{ asset('assets/kalung.webp') }}" alt="Kalung Kerang" class="w-full h-full object-contain select-none pointer-events-none">
+                                            </div>
+                                            <span class="mt-2 text-xs sm:text-sm font-bold text-[#6D360B] font-['Jua'] tracking-wide text-center leading-tight">
+                                                Kalung Kerang
+                                            </span>
+                                        </div>
+
+                                        <!-- 3. Gantungan Kunci Kerang -->
+                                        <div class="bg-gradient-to-b from-[#FFFDF8] to-[#FFF4E0] border-2 border-[#D4A373]/70 rounded-2xl p-2 sm:p-2.5 flex flex-col items-center justify-between shadow-[0_4px_10px_rgba(0,0,0,0.08)] hover:scale-105 transition-transform duration-200">
+                                            <div class="w-full h-20 sm:h-24 md:h-28 rounded-xl bg-white flex items-center justify-center p-1.5 border border-amber-200/50 shadow-inner overflow-hidden">
+                                                <img src="{{ asset('assets/ganci.webp') }}" alt="Gantungan Kunci Kerang" class="w-full h-full object-contain select-none pointer-events-none">
+                                            </div>
+                                            <span class="mt-2 text-xs sm:text-sm font-bold text-[#6D360B] font-['Jua'] tracking-wide text-center leading-tight">
+                                                Gantungan Kunci Kerang
+                                            </span>
+                                        </div>
+
+                                        <!-- 4. Hiasan Kerang -->
+                                        <div class="bg-gradient-to-b from-[#FFFDF8] to-[#FFF4E0] border-2 border-[#D4A373]/70 rounded-2xl p-2 sm:p-2.5 flex flex-col items-center justify-between shadow-[0_4px_10px_rgba(0,0,0,0.08)] hover:scale-105 transition-transform duration-200">
+                                            <div class="w-full h-20 sm:h-24 md:h-28 rounded-xl bg-white flex items-center justify-center p-1.5 border border-amber-200/50 shadow-inner overflow-hidden">
+                                                <img src="{{ asset('assets/hiasan.webp') }}" alt="Hiasan Kerang" class="w-full h-full object-contain select-none pointer-events-none">
+                                            </div>
+                                            <span class="mt-2 text-xs sm:text-sm font-bold text-[#6D360B] font-['Jua'] tracking-wide text-center leading-tight">
+                                                Hiasan Kerang
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- STEP 3: Yuk Kenali Pantai Kenjeran (Karakter: c_menyapa) -->

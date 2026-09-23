@@ -147,7 +147,11 @@ function initAppLoader() {
             '/assets/CAPAIAN.webp',
             '/assets/pengembang1.webp',
             '/assets/pengembang2.webp',
-            '/assets/pengembang3.webp'
+            '/assets/pengembang3.webp',
+            '/assets/gelang.webp',
+            '/assets/kalung.webp',
+            '/assets/ganci.webp',
+            '/assets/hiasan.webp'
         ];
 
     const routesToPrefetch = Array.isArray(window.__SABI_PREFETCH_ROUTES) ? window.__SABI_PREFETCH_ROUTES : [];
