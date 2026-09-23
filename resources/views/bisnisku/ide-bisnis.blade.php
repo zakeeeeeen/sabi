@@ -151,11 +151,11 @@
                 <!-- ============================================================
                      1. KAPAL LAUT DI CAKRAWALA (SMOOTH ANIMATED)
                      ============================================================ -->
-                <div class="animate-ship-sail z-5 pointer-events-none" style="top: 34%;">
+                <div class="animate-ship-sail z-5 pointer-events-none" style="top: 37%;">
                     <div class="animate-ship-bob pointer-events-none">
                         <img src="{{ asset('assets/kapal.webp') }}" 
                              alt="Kapal Laut" 
-                             class="w-[95px] sm:w-[140px] md:w-[200px] lg:w-[260px] h-auto drop-shadow-md select-none pointer-events-none">
+                             class="w-[140px] sm:w-[190px] md:w-[240px] lg:w-[270px] h-auto drop-shadow-md select-none pointer-events-none">
                     </div>
                 </div>
 
@@ -419,7 +419,7 @@
 
                 window.stepCharacters = {
                     1: { src: "{{ asset('assets/c_kerang.webp') }}", flip: false },
-                    2: { src: "{{ asset('assets/c_ide.webp') }}", flip: false },
+                    2: { src: "{{ asset('assets/c_aksesoris.webp') }}", flip: false },
                     3: { src: "{{ asset('assets/c_menyapa.webp') }}", flip: false },
                     4: { src: "{{ asset('assets/c_berpikir.webp') }}", flip: true }
                 };
