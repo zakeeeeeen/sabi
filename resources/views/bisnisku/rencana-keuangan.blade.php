@@ -205,7 +205,7 @@
                 </div>
 
                 <!-- Header Title (Tengah Atas) -->
-                <div class="absolute left-0 right-0 -top-2 sm:-top-3 md:-top-4 flex justify-center px-4 z-20 pointer-events-none">
+                <div class="absolute left-0 right-0 -top-2 sm:-top-3 md:-top-4 flex justify-center px-4 z-50 pointer-events-none">
                     <img src="{{ asset('assets/rencanakeuangan.webp') }}" 
                          alt="Rencana Keuangan" 
                          class="h-20 sm:h-24 md:h-32 lg:h-36 xl:h-40 w-auto drop-shadow-xl animate-banner-float select-none pointer-events-none">
@@ -229,12 +229,12 @@
                 <!-- ============================================================
                      5. PANEL BUBBLE CHAT BESAR DI TENGAH - KANAN
                      ============================================================ -->
-                <div class="absolute z-30 left-[180px] sm:left-[220px] md:left-[290px] lg:left-[360px] xl:left-[410px] right-3 sm:right-6 md:right-10 top-[48%] -translate-y-1/2 flex items-center justify-center pointer-events-auto">
+                <div class="absolute z-30 left-[180px] sm:left-[220px] md:left-[290px] lg:left-[360px] xl:left-[410px] right-3 sm:right-6 md:right-10 top-[51%] -translate-y-1/2 flex items-center justify-center pointer-events-auto">
                     
                     <div class="relative w-full max-w-5xl xl:max-w-6xl animate-bubble-float select-none">
                         
                         <!-- White Large Speech Bubble Card -->
-                        <div class="bg-white rounded-[24px] sm:rounded-[30px] md:rounded-[36px] border-4 border-white p-2.5 sm:p-3.5 md:p-4 bubble-card-shadow max-h-[62vh] sm:max-h-[66vh] overflow-y-auto">
+                        <div class="bg-white rounded-[24px] sm:rounded-[30px] md:rounded-[36px] border-4 border-white p-2.5 sm:p-3.5 md:p-4 bubble-card-shadow max-h-[60vh] sm:max-h-[64vh] overflow-y-auto">
                             
                             <!-- STEP 1: Pembukaan (Karakter: c_ide) -->
                             <div id="step1" class="step-panel active flex-col items-center justify-center text-center py-6 px-2 sm:px-6">
@@ -309,8 +309,8 @@
 
                                 </div>
 
-                                <!-- Bottom Row: 2 Main Interactive Columns (Wide & No Scroll) -->
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 sm:gap-3.5 items-stretch pt-0.5">
+                                <!-- Bottom Row: 2 Main Interactive Columns (Side-by-Side on all screens) -->
+                                <div class="grid grid-cols-2 gap-2 sm:gap-3.5 items-stretch pt-0.5">
                                     
                                     <!-- Left Column: Pilihan -->
                                     <div class="relative rounded-2xl border-2 border-[#208DEB] p-2 sm:p-2.5 pt-3.5 bg-white shadow-sm flex flex-col justify-between"

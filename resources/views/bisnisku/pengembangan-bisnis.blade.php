@@ -168,7 +168,7 @@
                 </div>
 
                 <!-- Header Title (Tengah Atas) -->
-                <div class="absolute left-0 right-0 -top-2 sm:-top-3 md:-top-4 flex justify-center px-4 z-20 pointer-events-none">
+                <div class="absolute left-0 right-0 -top-2 sm:-top-3 md:-top-4 flex justify-center px-4 z-50 pointer-events-none">
                     <img src="{{ asset('assets/pengembanganbisnis.webp') }}" 
                          alt="Pengembangan Bisnis" 
                          class="h-20 sm:h-24 md:h-32 lg:h-36 xl:h-40 w-auto drop-shadow-xl animate-banner-float select-none pointer-events-none">
@@ -192,12 +192,12 @@
                 <!-- ============================================================
                      5. PANEL BUBBLE CHAT BESAR DI TENGAH - KANAN
                      ============================================================ -->
-                <div id="bubbleContainer" class="absolute z-30 left-[180px] sm:left-[220px] md:left-[290px] lg:left-[360px] xl:left-[410px] right-3 sm:right-6 md:right-10 top-[48%] -translate-y-1/2 flex items-center justify-center pointer-events-auto">
+                <div id="bubbleContainer" class="absolute z-30 left-[180px] sm:left-[220px] md:left-[290px] lg:left-[360px] xl:left-[410px] right-3 sm:right-6 md:right-10 top-[51%] -translate-y-1/2 flex items-center justify-center pointer-events-auto">
                     
                     <div class="relative w-full max-w-5xl xl:max-w-6xl animate-bubble-float select-none">
                         
                         <!-- White Large Speech Bubble Card -->
-                        <div class="bg-white rounded-[24px] sm:rounded-[30px] md:rounded-[36px] border-4 border-white p-3 sm:p-3.5 md:p-4 bubble-card-shadow max-h-[62vh] sm:max-h-[66vh] overflow-y-auto">
+                        <div class="bg-white rounded-[24px] sm:rounded-[30px] md:rounded-[36px] border-4 border-white p-3 sm:p-3.5 md:p-4 bubble-card-shadow max-h-[60vh] sm:max-h-[64vh] overflow-y-auto">
                             
                             <!-- STEP 1: Pembukaan Kegiatan (Langsung dialog teks tanpa icon & label) -->
                             <div id="step1" class="step-panel active flex-col items-center justify-center text-center py-8 px-2 sm:px-6">
@@ -375,45 +375,67 @@
                                 </p>
                             </div>
 
-                            <!-- STEP 5: Studi Kasus Investasi -->
-                            <div id="step5" class="step-panel flex-col space-y-2 text-left w-full py-0.5">
-                                <div class="flex items-center gap-2 pb-1 border-b-2 border-emerald-100">
-                                    <div class="w-7 h-7 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-600 shrink-0">
-                                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                            <!-- STEP 5: Studi Kasus Investasi (Pesaing & Pertanyaan Baru) -->
+                            <div id="step5" class="step-panel flex-col space-y-4 text-left w-full pt-2 pb-1">
+                                
+                                <!-- Box 1: Studi Kasus -->
+                                <div class="relative pt-3.5 pb-2.5 px-3 sm:px-4 rounded-2xl sm:rounded-3xl border-2 border-[#0095E8] bg-white shadow-sm">
+                                    <!-- Badge Header Studi Kasus -->
+                                    <div class="absolute -top-3.5 left-4 inline-flex items-center gap-1.5 px-3 sm:px-4 py-0.5 rounded-full bg-[#0095E8] border-2 border-white shadow-sm text-white font-black text-xs sm:text-sm font-['Jua'] tracking-wide">
+                                        <!-- Search / Case Study Icon -->
+                                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                            <circle cx="11.5" cy="13.5" r="2.5"></circle>
+                                            <path d="m13.5 15.5 2 2"></path>
                                         </svg>
+                                        <span>Studi Kasus</span>
                                     </div>
-                                    <h3 class="text-sm sm:text-base md:text-lg font-black text-[#6D360B] tracking-tight">
-                                        Studi Kasus: Keputusan Investasi
-                                    </h3>
+
+                                    <div class="flex flex-row items-center gap-3 sm:gap-4 pt-1">
+                                        <p class="flex-1 text-[11px] sm:text-[13px] md:text-sm font-black text-slate-800 leading-snug">
+                                            Usaha kamu semakin dikenal hingga pembeli datang dari berbagai daerah. Namun, kini muncul beberapa pengusaha lain menjual kerajinan yang mirip dengan kerajinanmu. Agar usahamu tetap diminati, kamu perlu memilih investasi yang tepat
+                                        </p>
+                                        <div class="w-[38%] sm:w-52 md:w-64 lg:w-72 shrink-0 rounded-xl sm:rounded-2xl overflow-hidden shadow-sm border border-slate-200">
+                                            <img src="{{ asset('assets/pesaing.webp') }}" alt="Ilustrasi Toko Kerajinan Pesaing" class="w-full h-auto object-cover max-h-28 sm:max-h-36 md:max-h-44">
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="p-2 sm:p-2.5 rounded-xl bg-emerald-50 border-2 border-emerald-200">
-                                    <p class="text-xs sm:text-[13px] md:text-sm text-slate-800 leading-snug font-medium">
-                                        Permintaan kerajinan kerangmu meningkat pesat. Kamu memiliki opsi untuk membeli mesin otomatis pemoles kerang seharga <strong>Rp1.000.000</strong> yang bisa melipatgandakan produksi harian hingga 4 kali lipat.
-                                    </p>
+                                <!-- Box 2: Pertanyaan & Input Jawaban -->
+                                <div class="relative pt-3.5 pb-2.5 px-3 sm:px-4 rounded-2xl sm:rounded-3xl border-2 border-[#70B312] bg-white shadow-sm">
+                                    <!-- Badge Header Pertanyaan -->
+                                    <div class="absolute -top-3.5 left-4 inline-flex items-center gap-1.5 px-3 sm:px-4 py-0.5 rounded-full bg-[#70B312] border-2 border-white shadow-sm text-white font-black text-xs sm:text-sm font-['Jua'] tracking-wide">
+                                        <!-- Question Bulb Icon -->
+                                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7zm-2 18a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-1h-4v1z"/>
+                                        </svg>
+                                        <span>Pertanyaan</span>
+                                    </div>
+
+                                    <form id="studiKasusInvestasiForm" onsubmit="event.preventDefault(); window.submitInvestasiJawaban();" class="space-y-2 pt-1">
+                                        @csrf
+                                        <p class="text-xs sm:text-[13px] md:text-sm font-black text-slate-800 leading-snug">
+                                            Jika kamu menjadi pemilik usaha, investasi apa yang akan kamu pilih agar bisnismu semakin maju dan berkembang? Jelaskan juga alasanmu ya!
+                                        </p>
+
+                                        <!-- Dashed Textarea Container -->
+                                        <div class="p-2 sm:p-2.5 rounded-2xl bg-[#FFFDF0] border-2 border-dashed border-[#F3CD91] focus-within:border-[#70B312] focus-within:ring-2 focus-within:ring-lime-200 transition-all">
+                                            <textarea id="jawabanInvestasi" name="jawaban" rows="3" required placeholder="Tuliskan jawaban analisismu di sini..."
+                                                class="w-full bg-transparent border-none outline-none resize-none text-xs sm:text-sm text-[#6D360B] font-bold font-['Plus_Jakarta_Sans'] placeholder-[#A16207]/60">{{ $investasiSubmission->payload['jawaban'] ?? '' }}</textarea>
+                                        </div>
+
+                                        <div class="flex justify-end pt-0.5">
+                                            <button type="button" onclick="window.submitInvestasiJawaban()" id="btnSubmitInvestasi"
+                                                class="rounded-full bg-gradient-to-b from-[#4ADE80] to-[#15803D] px-6 py-2 text-white text-xs sm:text-sm font-bold shadow-[0_3px_0_#0F5128] hover:brightness-110 active:translate-y-[2px] transition-all flex items-center gap-1.5 cursor-pointer font-['Jua']">
+                                                <span>Kirim & Selesaikan Modul</span>
+                                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
 
-                                <form id="studiKasusInvestasiForm" onsubmit="event.preventDefault(); window.submitInvestasiJawaban();" class="space-y-2">
-                                    @csrf
-                                    <div>
-                                        <label class="block text-xs sm:text-sm font-bold text-[#6D360B] mb-1" for="jawabanInvestasi">
-                                            Bagaimana keputusan investasi yang tepat dapat membantu usahamu mendapatkan keuntungan yang lebih besar di masa depan?
-                                        </label>
-                                        <textarea id="jawabanInvestasi" name="jawaban" rows="3" required placeholder="Tuliskan analisis keputusan investasimu di sini..."
-                                            class="w-full rounded-xl border-2 border-emerald-200 p-2 text-xs sm:text-sm text-[#6D360B] outline-none focus:border-[#00A3FF] focus:ring-2 focus:ring-sky-200 resize-none font-bold font-['Plus_Jakarta_Sans']">{{ $investasiSubmission->payload['jawaban'] ?? '' }}</textarea>
-                                    </div>
-
-                                    <div class="flex justify-end">
-                                        <button type="button" onclick="window.submitInvestasiJawaban()" id="btnSubmitInvestasi"
-                                            class="rounded-full bg-gradient-to-b from-[#4ADE80] to-[#15803D] px-6 py-2 text-white text-xs sm:text-sm font-bold shadow-[0_3px_0_#0F5128] hover:brightness-110 active:translate-y-[2px] transition-all flex items-center gap-1.5 cursor-pointer font-['Jua']">
-                                            <span>Kirim & Selesaikan Modul</span>
-                                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </form>
                             </div>
 
                         </div>
@@ -514,13 +536,23 @@
                         }
                     }
 
-                    // Update Character Image & Flip
+                    // Update Character Image, Flip & Opacity Mask for Step 3
                     const charContainer = document.getElementById('charContainer');
                     const charImg = document.getElementById('charDisplay');
                     const charData = window.stepCharacters[window.currentStep];
                     if (charImg && charData) {
                         charImg.src = charData.src;
                         charImg.style.transform = charData.flip ? 'scaleX(-1)' : 'scaleX(1)';
+
+                        // Khusus Step 3 (mesinrusak.webp): Bagian kanan yang masuk ke bubble chat diturunkan opacity-nya di bawah 50%
+                        if (window.currentStep === 3) {
+                            const maskGradient = 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.15) 100%)';
+                            charImg.style.maskImage = maskGradient;
+                            charImg.style.webkitMaskImage = maskGradient;
+                        } else {
+                            charImg.style.maskImage = 'none';
+                            charImg.style.webkitMaskImage = 'none';
+                        }
                     }
 
                     // Update Next Button: Sembunyikan di step 5
