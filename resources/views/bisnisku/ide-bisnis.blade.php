@@ -183,9 +183,9 @@
                      ============================================================ -->
                 <!-- Top Left: Tombol Home & Step Indicator Badge -->
                 <div class="absolute top-3 left-3 sm:top-4 sm:left-5 md:top-5 md:left-6 z-30 flex items-center gap-2 sm:gap-3">
-                    <!-- Tombol Home (Kembali ke Menu Utama) -->
-                    <a href="{{ route('menu') }}" data-sfx="hover" class="transition-transform hover:scale-105 active:scale-95 cursor-pointer block" title="Kembali ke Menu Utama">
-                        <img src="{{ asset('assets/home_button.webp') }}" alt="Menu Utama" class="w-10 sm:w-12 md:w-14 lg:w-16 h-auto drop-shadow-md select-none pointer-events-none">
+                    <!-- Tombol Home (Kembali ke Menu Bisnisku) -->
+                    <a href="{{ route('bisnisku') }}" data-sfx="hover" class="transition-transform hover:scale-105 active:scale-95 cursor-pointer block" title="Kembali ke Menu Bisnisku">
+                        <img src="{{ asset('assets/home_button.webp') }}" alt="Menu Bisnisku" class="w-10 sm:w-12 md:w-14 lg:w-16 h-auto drop-shadow-md select-none pointer-events-none">
                     </a>
 
                     <!-- Step Indicator Badge -->
@@ -207,21 +207,27 @@
                 <x-sound-settings />
 
                 <!-- ============================================================
-                     4. KARAKTER DI SISI KIRI BAWAH
+                     4. KARAKTER & KERANJANG DI SISI KIRI BAWAH
                      ============================================================ -->
-                <div class="absolute z-20 pointer-events-none -bottom-[75px] sm:-bottom-[85px] md:-bottom-[100px] left-[-35px] sm:left-[-20px] md:left-[10px] lg:left-[25px]">
-                    <div class="animate-char-idle pointer-events-none">
+                <div class="absolute z-40 pointer-events-none bottom-0 left-0 sm:left-2 md:left-4 lg:left-6 h-[68%] sm:h-[74%] md:h-[80%] max-h-[560px] flex items-end">
+                    <div class="animate-char-idle h-full flex items-end pointer-events-none">
                         <img id="charDisplay" 
                              src="{{ asset('assets/c_kerang.webp') }}" 
                              alt="Karakter" 
-                             class="h-[52vh] sm:h-[60vh] md:h-[70vh] w-auto drop-shadow-[0_14px_20px_rgba(0,0,0,0.3)] select-none pointer-events-none transition-transform duration-200">
+                             class="h-full w-auto max-h-full object-contain object-bottom drop-shadow-[0_12px_18px_rgba(0,0,0,0.3)] select-none pointer-events-none transition-transform duration-200">
+                    </div>
+                    <!-- Keranjang di samping Karakter -->
+                    <div class="relative -ml-5 sm:-ml-7 md:-ml-10 lg:-ml-12 mb-3 sm:mb-5 md:mb-7 pointer-events-none animate-bubble-float shrink-0" style="animation-delay: -1.5s;">
+                        <img src="{{ asset('assets/keranjang.webp') }}" 
+                             alt="Keranjang Kulit Kerang" 
+                             class="w-12 sm:w-16 md:w-22 lg:w-28 h-auto drop-shadow-[0_8px_14px_rgba(0,0,0,0.3)] select-none pointer-events-none">
                     </div>
                 </div>
 
                 <!-- ============================================================
                      5. PANEL BUBBLE CHAT BESAR DI TENGAH - KANAN
                      ============================================================ -->
-                <div class="absolute z-30 left-[165px] sm:left-[225px] md:left-[300px] lg:left-[360px] right-3 sm:right-6 md:right-12 top-[48%] -translate-y-1/2 flex items-center justify-center pointer-events-auto">
+                <div class="absolute z-30 left-[180px] sm:left-[220px] md:left-[290px] lg:left-[360px] xl:left-[410px] right-3 sm:right-6 md:right-10 top-[48%] -translate-y-1/2 flex items-center justify-center pointer-events-auto">
                     
                     <div class="relative w-full max-w-3xl animate-bubble-float select-none">
                         
@@ -293,15 +299,23 @@
                             </div>
 
                             <!-- STEP 3: Yuk Kenali Pantai Kenjeran (Karakter: c_menyapa) -->
-                            <div id="step3" class="step-panel flex-col space-y-4 py-2 px-1 sm:px-3 text-left text-[#785135]">
+                            <div id="step3" class="step-panel flex-col space-y-3 sm:space-y-4 py-1 sm:py-2 px-1 sm:px-3 text-left text-[#785135]">
                                 <h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#6D360B] leading-snug border-b-2 border-amber-100 pb-2">
                                     Yuk, Kenali Pantai Kenjeran
                                 </h2>
+
+                                <!-- Foto Pantai Kenjeran -->
+                                <div class="w-full rounded-2xl overflow-hidden border-2 sm:border-3 border-[#D4A373]/70 shadow-[0_4px_12px_rgba(0,0,0,0.12)] bg-amber-50/50">
+                                    <img src="{{ asset('assets/pantaikenjeran.webp') }}" 
+                                         alt="Pantai Kenjeran Surabaya" 
+                                         class="w-full h-32 sm:h-40 md:h-48 lg:h-56 object-cover object-center select-none pointer-events-none hover:scale-105 transition-transform duration-300">
+                                </div>
+
                                 <p class="text-xs sm:text-sm md:text-base lg:text-lg font-medium leading-relaxed">
                                     Di Surabaya, tepatnya di Pantai Kenjeran, terdapat banyak hasil laut lho! Seperti berbagai jenis cangkang kulit kerang.
                                 </p>
                                 <p class="text-xs sm:text-sm md:text-base lg:text-lg font-medium leading-relaxed">
-                                    Di daerah ini juga terdapat banyak pemasok kulit kerang dengan kualitas yang bagus
+                                    Di daerah ini juga terdapat banyak pemasok kulit kerang dengan kualitas yang bagus.
                                 </p>
                             </div>
 
@@ -446,11 +460,7 @@
                     const charData = window.stepCharacters[window.currentStep];
                     if (charImg && charData) {
                         charImg.src = charData.src;
-                        if (charData.flip) {
-                            charImg.style.transform = 'scaleX(-1)';
-                        } else {
-                            charImg.style.transform = 'scaleX(1)';
-                        }
+                        charImg.style.transform = charData.flip ? 'scaleX(-1)' : 'scaleX(1)';
                     }
 
                     // Update Button Visibility: btnNext hidden on Step 4

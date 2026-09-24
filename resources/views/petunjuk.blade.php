@@ -44,10 +44,8 @@
                     </a>
                 </div>
 
-                <!-- Top Right Logo -->
-                <div class="absolute top-3 right-3 md:top-5 md:right-6 z-20">
-                    <img src="{{ asset('assets/sabi.webp') }}" alt="SABI" class="w-24 md:w-36 h-auto drop-shadow">
-                </div>
+                <!-- Top Right Sound Settings -->
+                <x-sound-settings />
 
         <!-- Main Content: 4 Steps with Wood Accent Panel -->
         <div class="absolute inset-x-0 top-[16%] md:top-[19%] bottom-4 md:bottom-6 flex items-center justify-center px-4 md:px-10 overflow-y-auto">
@@ -90,28 +88,54 @@
                         </div>
 
                         <!-- Point 3 (With left_button logo) -->
-                        <div class="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-white/90 border-2 border-indigo-200/80 shadow-sm hover:bg-white transition-colors">
-                            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#4F46E5] text-white flex items-center justify-center font-bold text-sm sm:text-base shrink-0 shadow-sm">
+                        <div class="flex items-center gap-3 p-2 sm:p-2.5 rounded-2xl bg-white/90 border-2 border-indigo-200/80 shadow-sm hover:bg-white transition-colors">
+                            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#4F46E5] text-white flex items-center justify-center font-bold text-xs sm:text-sm shrink-0 shadow-sm">
                                 3
                             </div>
                             <div class="flex items-center gap-2 flex-1 flex-wrap">
-                                <p class="text-sm sm:text-base md:text-lg text-slate-800 tracking-wide">
+                                <p class="text-xs sm:text-sm md:text-base text-slate-800 tracking-wide">
                                     Gunakan <strong class="text-[#4F46E5]">tombol kembali</strong> untuk menuju pembelajaran sebelumnya.
                                 </p>
-                                <img src="{{ asset('assets/left_button.webp') }}" alt="Tombol Kembali" class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0 drop-shadow select-none">
+                                <img src="{{ asset('assets/left_button.webp') }}" alt="Tombol Kembali" class="w-6 h-6 sm:w-7 sm:h-7 object-contain shrink-0 drop-shadow select-none">
                             </div>
                         </div>
 
                         <!-- Point 4 (With right_button logo) -->
-                        <div class="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-white/90 border-2 border-emerald-200/80 shadow-sm hover:bg-white transition-colors">
-                            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#059669] text-white flex items-center justify-center font-bold text-sm sm:text-base shrink-0 shadow-sm">
+                        <div class="flex items-center gap-3 p-2 sm:p-2.5 rounded-2xl bg-white/90 border-2 border-emerald-200/80 shadow-sm hover:bg-white transition-colors">
+                            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#059669] text-white flex items-center justify-center font-bold text-xs sm:text-sm shrink-0 shadow-sm">
                                 4
                             </div>
                             <div class="flex items-center gap-2 flex-1 flex-wrap">
-                                <p class="text-sm sm:text-base md:text-lg text-slate-800 tracking-wide">
+                                <p class="text-xs sm:text-sm md:text-base text-slate-800 tracking-wide">
                                     Gunakan <strong class="text-[#059669]">tombol lanjut</strong> untuk menuju pembelajaran berikutnya.
                                 </p>
-                                <img src="{{ asset('assets/right_button.webp') }}" alt="Tombol Lanjut" class="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0 drop-shadow select-none">
+                                <img src="{{ asset('assets/right_button.webp') }}" alt="Tombol Lanjut" class="w-6 h-6 sm:w-7 sm:h-7 object-contain shrink-0 drop-shadow select-none">
+                            </div>
+                        </div>
+
+                        <!-- Point 5 (With home_button logo) -->
+                        <div class="flex items-center gap-3 p-2 sm:p-2.5 rounded-2xl bg-white/90 border-2 border-amber-200/80 shadow-sm hover:bg-white transition-colors">
+                            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#D97706] text-white flex items-center justify-center font-bold text-xs sm:text-sm shrink-0 shadow-sm">
+                                5
+                            </div>
+                            <div class="flex items-center gap-2 flex-1 flex-wrap">
+                                <p class="text-xs sm:text-sm md:text-base text-slate-800 tracking-wide">
+                                    Gunakan <strong class="text-[#D97706]">tombol home</strong> untuk kembali ke menu Bisnisku.
+                                </p>
+                                <img src="{{ asset('assets/home_button.webp') }}" alt="Tombol Home" class="w-6 h-6 sm:w-7 sm:h-7 object-contain shrink-0 drop-shadow select-none">
+                            </div>
+                        </div>
+
+                        <!-- Point 6 (With pengaturan_button logo) -->
+                        <div class="flex items-center gap-3 p-2 sm:p-2.5 rounded-2xl bg-white/90 border-2 border-purple-200/80 shadow-sm hover:bg-white transition-colors">
+                            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#7C3AED] text-white flex items-center justify-center font-bold text-xs sm:text-sm shrink-0 shadow-sm">
+                                6
+                            </div>
+                            <div class="flex items-center gap-2 flex-1 flex-wrap">
+                                <p class="text-xs sm:text-sm md:text-base text-slate-800 tracking-wide">
+                                    Gunakan <strong class="text-[#7C3AED]">tombol pengaturan</strong> untuk mengatur volume musik dan efek suara media.
+                                </p>
+                                <img src="{{ asset('assets/pengaturan_button.webp') }}" alt="Tombol Pengaturan" class="w-6 h-6 sm:w-7 sm:h-7 object-contain shrink-0 drop-shadow select-none">
                             </div>
                         </div>
 

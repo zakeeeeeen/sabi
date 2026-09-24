@@ -14,6 +14,7 @@
         <link rel="preload" as="image" href="{{ asset('assets/c_berpikir.webp') }}">
         <link rel="preload" as="image" href="{{ asset('assets/c_ide.webp') }}">
         <link rel="preload" as="image" href="{{ asset('assets/c_jempol.webp') }}">
+        <link rel="preload" as="image" href="{{ asset('assets/mesinrusak.webp') }}">
         <link rel="preload" as="image" href="{{ asset('assets/left_button.webp') }}">
         <link rel="preload" as="image" href="{{ asset('assets/right_button.webp') }}">
 
@@ -153,9 +154,9 @@
                      ============================================================ -->
                 <!-- Top Left: Tombol Home & Step Indicator Badge -->
                 <div class="absolute top-3 left-3 sm:top-4 sm:left-5 md:top-5 md:left-6 z-30 flex items-center gap-2 sm:gap-3">
-                    <!-- Tombol Home (Kembali ke Menu Utama) -->
-                    <a href="{{ route('menu') }}" data-sfx="hover" class="transition-transform hover:scale-105 active:scale-95 cursor-pointer block" title="Kembali ke Menu Utama">
-                        <img src="{{ asset('assets/home_button.webp') }}" alt="Menu Utama" class="w-10 sm:w-12 md:w-14 lg:w-16 h-auto drop-shadow-md select-none pointer-events-none">
+                    <!-- Tombol Home (Kembali ke Menu Bisnisku) -->
+                    <a href="{{ route('bisnisku') }}" data-sfx="hover" class="transition-transform hover:scale-105 active:scale-95 cursor-pointer block" title="Kembali ke Menu Bisnisku">
+                        <img src="{{ asset('assets/home_button.webp') }}" alt="Menu Bisnisku" class="w-10 sm:w-12 md:w-14 lg:w-16 h-auto drop-shadow-md select-none pointer-events-none">
                     </a>
 
                     <!-- Step Indicator Badge -->
@@ -179,19 +180,19 @@
                 <!-- ============================================================
                      4. KARAKTER DI SISI KIRI BAWAH (Dinamis berganti tiap step)
                      ============================================================ -->
-                <div class="absolute z-20 pointer-events-none -bottom-[75px] sm:-bottom-[85px] md:-bottom-[100px] left-[-35px] sm:left-[-20px] md:left-[10px] lg:left-[25px]">
-                    <div class="animate-char-idle pointer-events-none">
+                <div id="charContainer" class="absolute z-40 pointer-events-none bottom-0 left-0 sm:left-2 md:left-4 lg:left-6 h-[68%] sm:h-[74%] md:h-[80%] max-h-[560px] flex items-end">
+                    <div class="animate-char-idle h-full flex items-end pointer-events-none">
                         <img id="charDisplay" 
                              src="{{ asset('assets/c_menyapa.webp') }}" 
                              alt="Karakter" 
-                             class="h-[52vh] sm:h-[60vh] md:h-[70vh] w-auto drop-shadow-[0_14px_20px_rgba(0,0,0,0.3)] select-none pointer-events-none transition-transform duration-200">
+                             class="h-full w-auto max-h-full object-contain object-bottom drop-shadow-[0_12px_18px_rgba(0,0,0,0.3)] select-none pointer-events-none transition-transform duration-200">
                     </div>
                 </div>
 
                 <!-- ============================================================
                      5. PANEL BUBBLE CHAT BESAR DI TENGAH - KANAN
                      ============================================================ -->
-                <div class="absolute z-30 left-[150px] sm:left-[210px] md:left-[280px] lg:left-[340px] right-3 sm:right-6 md:right-10 top-[48%] -translate-y-1/2 flex items-center justify-center pointer-events-auto">
+                <div id="bubbleContainer" class="absolute z-30 left-[180px] sm:left-[220px] md:left-[290px] lg:left-[360px] xl:left-[410px] right-3 sm:right-6 md:right-10 top-[48%] -translate-y-1/2 flex items-center justify-center pointer-events-auto">
                     
                     <div class="relative w-full max-w-5xl xl:max-w-6xl animate-bubble-float select-none">
                         
@@ -305,7 +306,7 @@
                             </div>
 
                             <!-- STEP 3: Studi Kasus Mesin Rusak (Pentingnya Tabungan) -->
-                            <div id="step3" class="step-panel flex-col space-y-2 text-left w-full py-0.5">
+                            <div id="step3" class="step-panel flex-col space-y-2 text-left w-full py-0.5 pl-6 sm:pl-10 md:pl-28 lg:pl-44 xl:pl-52">
                                 <div class="flex items-center gap-2 pb-1 border-b-2 border-rose-100">
                                     <div class="w-7 h-7 rounded-xl bg-rose-100 flex items-center justify-center text-rose-600 shrink-0">
                                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor">
@@ -481,7 +482,7 @@
                 window.stepCharacters = {
                     1: { src: "{{ asset('assets/c_menyapa.webp') }}", flip: false },
                     2: { src: "{{ asset('assets/c_aksesoris.webp') }}", flip: false },
-                    3: { src: "{{ asset('assets/c_berpikir.webp') }}", flip: true },
+                    3: { src: "{{ asset('assets/mesinrusak.webp') }}", flip: false },
                     4: { src: "{{ asset('assets/c_ide.webp') }}", flip: false },
                     5: { src: "{{ asset('assets/c_berpikir.webp') }}", flip: true }
                 };
@@ -514,15 +515,12 @@
                     }
 
                     // Update Character Image & Flip
+                    const charContainer = document.getElementById('charContainer');
                     const charImg = document.getElementById('charDisplay');
                     const charData = window.stepCharacters[window.currentStep];
                     if (charImg && charData) {
                         charImg.src = charData.src;
-                        if (charData.flip) {
-                            charImg.style.transform = 'scaleX(-1)';
-                        } else {
-                            charImg.style.transform = 'scaleX(1)';
-                        }
+                        charImg.style.transform = charData.flip ? 'scaleX(-1)' : 'scaleX(1)';
                     }
 
                     // Update Next Button: Sembunyikan di step 5

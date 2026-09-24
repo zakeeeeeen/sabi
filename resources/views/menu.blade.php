@@ -233,27 +233,27 @@
                 <!-- ============================================================
                      4. KARAKTER C_MENYAPA & CLOUD CHAT (DI SISI KIRI)
                      ============================================================ -->
-                <!-- Karakter c_menyapa (Berada rapi di kiri bawah) -->
-                <div class="absolute z-20 pointer-events-none animate-char-entrance-left -bottom-[70px] sm:-bottom-[95px] md:-bottom-[115px] lg:-bottom-[130px] -left-[10px] sm:left-0 md:left-2 lg:left-6">
-                    <div class="animate-char-idle">
+                <!-- Karakter c_menyapa (Berada di kiri bawah di layer belakang z-20, ukuran berbasis tinggi container %) -->
+                <div class="absolute z-20 pointer-events-none animate-char-entrance-left bottom-0 left-0 sm:left-2 md:left-4 lg:left-6 h-[68%] sm:h-[74%] md:h-[80%] max-h-[560px] flex items-end">
+                    <div class="animate-char-idle h-full flex items-end">
                         <img src="{{ asset('assets/c_menyapa.webp') }}" 
                              alt="Karakter Menyapa" 
-                             class="h-[50vh] sm:h-[60vh] md:h-[72vh] lg:h-[78vh] max-h-[580px] w-auto drop-shadow-[0_14px_18px_rgba(0,0,0,0.3)] select-none">
+                             class="h-full w-auto max-h-full object-contain object-bottom drop-shadow-[0_12px_18px_rgba(0,0,0,0.3)] select-none pointer-events-none">
                     </div>
                 </div>
 
-                <!-- Cloud Chat Bubble (Proporsional & Tidak Menabrak Tombol) -->
-                <div class="absolute z-30 left-[165px] sm:left-[210px] md:left-[260px] lg:left-[310px] xl:left-[360px] top-[40%] -translate-y-1/2 max-w-[190px] sm:max-w-[240px] md:max-w-[310px] lg:max-w-[370px] xl:max-w-[420px] pointer-events-auto animate-bubble-float select-none">
+                <!-- Cloud Chat Bubble (Dekat dengan Karakter, Layer Depan z-30) -->
+                <div class="absolute z-30 left-[180px] sm:left-[210px] md:left-[270px] lg:left-[330px] xl:left-[380px] top-[40%] sm:top-[42%] md:top-[44%] -translate-y-1/2 max-w-[180px] sm:max-w-[230px] md:max-w-[300px] lg:max-w-[360px] xl:max-w-[400px] pointer-events-auto animate-bubble-float select-none">
                     <div class="relative" style="filter: drop-shadow(-6px 6px 0 #7FBFC9);">
                         <!-- White Speech Bubble Box -->
-                        <div class="bg-white rounded-[20px] sm:rounded-[24px] md:rounded-[28px] px-3.5 sm:px-4.5 md:px-5.5 py-2.5 sm:py-3.5 md:py-4 text-left shadow-sm">
-                            <p class="text-[#785135] text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-['Jua'] leading-snug sm:leading-relaxed tracking-wide">
+                        <div class="bg-white rounded-[18px] sm:rounded-[22px] md:rounded-[28px] px-3 sm:px-4 md:px-5 py-2 sm:py-3 md:py-3.5 text-left shadow-sm">
+                            <p class="text-[#785135] text-[11px] sm:text-xs md:text-sm lg:text-base xl:text-lg font-['Jua'] leading-snug sm:leading-relaxed tracking-wide">
                                 Halo {{ auth()->user()->name ?? 'Teman' }}! Selamat datang di SABI! Yuk, belajar jadi pengusaha hebat dengan cara yang asyik 
                             </p>
                         </div>
 
                         <!-- Ekor Cloud Chat di Pojok Kiri Bawah mengarah ke Karakter -->
-                        <div class="absolute -bottom-3 left-4 sm:left-6 w-6 sm:w-7 h-4 sm:h-5 overflow-visible pointer-events-none">
+                        <div class="absolute -bottom-2.5 left-4 sm:left-6 w-5 sm:w-6 md:w-7 h-3.5 sm:h-4 md:h-5 overflow-visible pointer-events-none">
                             <svg viewBox="0 0 28 20" class="w-full h-full fill-white overflow-visible">
                                 <path d="M0,0 L24,0 C16,8 6,15 -10,20 C-2,12 0,6 0,0 Z"/>
                             </svg>
